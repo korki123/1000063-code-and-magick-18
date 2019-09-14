@@ -1,3 +1,5 @@
+'use strict'
+
 window.renderStatistics = function(ctx, names, times) {
 
   var AREA_WIDTH = 420;
@@ -17,40 +19,49 @@ window.renderStatistics = function(ctx, names, times) {
   ctx.fillRect(AREA_X, AREA_Y, AREA_WIDTH, AREA_HEIGHT);
 
   ctx.fillStyle = 'rgb(0, 0, 0)';
-  ctx.font = '20px PT Mono';
+  ctx.font = '14px PT Mono';
   ctx.textBaseline = 'hanging';
-  ctx.fillText('Ура вы победили!', 120, 30);
-  ctx.fillText('Список результатов:', 120, 50);
+  ctx.fillText('Ура вы победили!', 120, 20);
+  ctx.fillText('Список результатов:', 120, 35);
+
+   ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+   ctx.fillRect(120, 60, 40, 200);
+
+   ctx.fillStyle = 'rgb(0, 0, 0)';
+   ctx.font = '14px PT Mono';
+   ctx.textBaseline = 'hanging';
+   ctx.fillText('Игрок1', 120, 270);
 
 
-  var names = [];
-  var times = [];
 
-  var maxTime  = times[0];
-  var carrentIndex = 0;
-
-  for (var i = 0; i < times.length; i++) {
-    if (maxTime < times[i]) {
-      maxTime = times[i];
-      carrentIndex = i;
-      console.log(maxTime);
-      console.log(carrentIndex);
-    }
-    {
-      maxTime = maxTime
-    };
-
-    for (var j = 0; j < array.length; i++) {
-      names[j];
-      times[j];
-
-      ctx.fillStyle = 'rgb(255, 255, 255)';
-      ctx.fillRect(AREA_X, AREA_Y, AREA_WIDTH, AREA_HEIGHT);
-
-      ctx.fillStyle = 'rgb(0, 0, 0)';
-      ctx.font = '20px PT Mono';
-      ctx.textBaseline = 'hanging';
-      ctx.fillText('Ура вы победили!', 120, 30);
-    };
-  };
+  // var names = [];
+  // var times = [];
+  //
+  // var maxTime  = 0;
+  // // var carrentIndex = 0;
+  //
+  // for (var i = 0; i < times.length; i++) {
+  //   if (maxTime < times[i]) {
+  //     maxTime = times[i];
+  //     var carrentIndex = i;
+  //     console.log(maxTime);
+  //     console.log(carrentIndex);
+  //   }
+  //   {
+  //     maxTime = maxTime;
+  //   };
+  //
+  //   for (var j = 0; j < array.length; i++) {
+  //     names[j];
+  //     times[j];
+  //
+  //     ctx.fillStyle = 'rgb(255, 255, 255)';
+  //     ctx.fillRect(AREA_X, AREA_Y, AREA_WIDTH, AREA_HEIGHT);
+  //
+  //     ctx.fillStyle = 'rgb(0, 0, 0)';
+  //     ctx.font = '20px PT Mono';
+  //     ctx.textBaseline = 'hanging';
+  //     ctx.fillText(names[j], 120, 30);
+  //   };
+  // };
 };
