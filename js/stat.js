@@ -1,6 +1,6 @@
 'use strict'
 
-window.renderStatistics = function(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
 
   var AREA_WIDTH = 420;
   var AREA_HEIGHT = 270;
@@ -9,6 +9,7 @@ window.renderStatistics = function(ctx, names, times) {
   var AREA_SHADOW_X = 110;
   var AREA_SHADOW_Y = 20;
   var COLUMN_WIDTH = 40;
+  var GAP = 50;
 
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(AREA_SHADOW_X, AREA_SHADOW_Y, AREA_WIDTH, AREA_HEIGHT);
@@ -68,11 +69,10 @@ window.renderStatistics = function(ctx, names, times) {
 // +++++++++++++++++++++++ столбцы +++++++++++++++++++++++
   for (var i = 0; i < gameTimes.length; i++) {
 
-    var COLOR_COLUMN = gamers[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + Math.random() + ')';
-    var GAP = 50;
-    var COLUMN_HEIGHT = 270 / maxTime;
-    console.log('высота колонки ' + COLUMN_HEIGHT);
+    var color_column = gamers[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + Math.random() + ')';
 
+    var column_height = 270 / maxTime;
+    console.log('высота колонки ' + COLUMN_HEIGHT);
 
        ctx.fillStyle = COLOR_COLUMN;
        ctx.fillRect(130 + i * (COLUMN_WIDTH + GAP), 55 + (270 - COLUMN_HEIGHT * gameTimes[i]), COLUMN_WIDTH, COLUMN_HEIGHT * gameTimes[i]);
