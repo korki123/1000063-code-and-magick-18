@@ -8,6 +8,8 @@ var AREA_SHADOW_X = 110;
 var AREA_SHADOW_Y = 20;
 var COLUMN_WIDTH = 40;
 var GAP = 50;
+var TEXT_FONTS = '14px PT Mono';
+var COLOR_BLACK = 'rgb(0, 0, 0)';
 
 var getMaxTimes = function (times) {
   var maxTime = 0;
@@ -22,13 +24,12 @@ var getMaxTimes = function (times) {
   return maxTime;
 };
 
-var paintGamers = function (names) {
+var paintRandom = function (names) {
   for (var i = 0; i < names.length; i++) {
     var gamersColors = [i];
     gamersColors[i] = names[i];
-    gamersColors[i] = 'rgba(0, 0, 255, ' + Math.random() + ')';
   }
-  return gamersColors;
+  return 'rgba(0, 0, 255, ' + Math.random() + ')';
 };
 
 window.renderStatistics = function (ctx, names, times) {
@@ -39,15 +40,15 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = 'rgb(255, 255, 255)';
   ctx.fillRect(AREA_X, AREA_Y, AREA_WIDTH, AREA_HEIGHT);
 
-  ctx.fillStyle = 'rgb(0, 0, 0)';
-  ctx.font = '14px PT Mono';
+  ctx.fillStyle = COLOR_BLACK;
+  ctx.font = TEXT_FONTS;
   ctx.textBaseline = 'hanging';
   ctx.fillText('Ура вы победили!', 150, 20);
   ctx.fillText('Список результатов:', 150, 35);
 
   for (var i = 0; i < times.length; i++) {
 
-    var colorColumn = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : paintGamers(names);
+    var colorColumn = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : paintRandom(names);
 
     var columnHeight = 150 / getMaxTimes(times);
 
@@ -55,14 +56,14 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillRect(150 + i * (COLUMN_WIDTH + GAP), 90 + (150 - columnHeight * times[i]), COLUMN_WIDTH, columnHeight * times[i]);
 
     var columnNames = 150 + i * (COLUMN_WIDTH + GAP);
-    ctx.fillStyle = 'rgb(0, 0, 0)';
-    ctx.font = '14px PT Mono';
+    ctx.fillStyle = COLOR_BLACK;
+    ctx.font = TEXT_FONTS;
     ctx.textBaseline = 'hanging';
     ctx.fillText(names[i], columnNames, 255);
 
     var gameTimes = 70 + (150 - columnHeight * times[i]);
     ctx.fillStyle = 'rgb(0, 0, 0)';
-    ctx.font = '14px PT Mono';
+    ctx.font = TEXT_FONTS;
     ctx.fillText(times[i], columnNames, gameTimes);
   }
 };
