@@ -34,10 +34,6 @@ var getMaxTimes = function (times) {
 };
 
 var paintRandom = function (names) {
-  for (var i = 0; i < names.length; i++) {
-    var gamersColors = [i];
-    gamersColors[i] = names[i];
-  }
   return 'rgba(0, 0, 255, ' + Math.random() + ')';
 };
 
