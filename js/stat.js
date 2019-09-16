@@ -72,10 +72,10 @@ window.renderStatistics = function (ctx, names, times) {
     var color_column = gamers[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + Math.random() + ')';
 
     var column_height = 270 / maxTime;
-    console.log('высота колонки ' + COLUMN_HEIGHT);
+    console.log('высота колонки ' + column_height);
 
-       ctx.fillStyle = COLOR_COLUMN;
-       ctx.fillRect(130 + i * (COLUMN_WIDTH + GAP), 55 + (270 - COLUMN_HEIGHT * gameTimes[i]), COLUMN_WIDTH, COLUMN_HEIGHT * gameTimes[i]);
+       ctx.fillStyle = color_column;
+       ctx.fillRect(130 + i * (COLUMN_WIDTH + GAP), 55 + (270 - column_height * gameTimes[i]), COLUMN_WIDTH, column_height * gameTimes[i]);
 
        // ctx.fillStyle = 'rgb(0, 0, 0)';
        // ctx.font = '14px PT Mono';
