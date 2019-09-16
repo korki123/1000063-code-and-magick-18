@@ -52,49 +52,4 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.font = '14px PT Mono';
     ctx.fillText(times[i], columnNames, gameTimes);
   }
-  // console.log('время ' + times);
-  // console.log('победитель ' + names[carrentIndex] + ' время ' + maxTime);
-
-  // +++++++++++++++++++++++ до сюда пока работает +++++++++++++++++++++++
-
-
-  // +++++++++++++++++++++++ столбцы +++++++++++++++++++++++
-  // for (var i = 0; i < times.length; i++) {
-  //
-  //   var colorColumn = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + Math.random() + ')';
-  //
-  //   var columnHeight = 270 / maxTime;
-  //   console.log('высота колонки ' + columnHeight);
-  //
-  //   ctx.fillStyle = colorColumn;
-  //   ctx.fillRect(130 + i * (COLUMN_WIDTH + GAP), 55 + (270 - columnHeight * times[i]), COLUMN_WIDTH, columnHeight * times[i]);
-  //
-  //   ctx.fillStyle = 'rgb(0, 0, 0)';
-  //   ctx.font = '14px PT Mono';
-  //   // ctx.textBaseline = 'hanging';
-  //   console.log('игрок такой names[i]')
-  //   ctx.fillText('names[i]', (120 + i * (COLUMN_WIDTH + GAP), 262));
-  // };
-  // +++++++++++++++++++++++ столбцы финиш +++++++++++++++++++++++
 };
-
-// +++++++++++++++++++++++ первая колонка +++++++++++++++++++++++
-
-// ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ' )';
-// ctx.fillRect(120, 55, COLUMN_WIDTH, 200);
-//
-// ctx.fillStyle = 'rgb(0, 0, 0)';
-// ctx.font = '14px PT Mono';
-// ctx.textBaseline = 'hanging';
-// ctx.fillText('Игрок1', 120, 262);
-
-// +++++++++++++++++++++++ колонка финиш +++++++++++++++++++++++
-
-
-// ctx.fillStyle = 'rgb(255, 255, 255)';
-// ctx.fillRect(120, 55, COLUMN_WIDTH, 200);
-//
-// ctx.fillStyle = 'rgb(0, 0, 0)';
-// ctx.font = '20px PT Mono';
-// ctx.textBaseline = 'hanging';
-// ctx.fillText(names[i], 120, 30);
