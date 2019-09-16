@@ -1,15 +1,37 @@
 'use strict';
 
-window.renderStatistics = function (ctx, names, times) {
+var AREA_WIDTH = 420;
+var AREA_HEIGHT = 270;
+var AREA_X = 100;
+var AREA_Y = 10;
+var AREA_SHADOW_X = 110;
+var AREA_SHADOW_Y = 20;
+var COLUMN_WIDTH = 40;
+var GAP = 50;
 
-  var AREA_WIDTH = 420;
-  var AREA_HEIGHT = 270;
-  var AREA_X = 100;
-  var AREA_Y = 10;
-  var AREA_SHADOW_X = 110;
-  var AREA_SHADOW_Y = 20;
-  var COLUMN_WIDTH = 40;
-  var GAP = 50;
+var getMaxTimes = function (times) {
+  var maxTime = 0;
+
+  for (var i = 0; i < times.length; i++) {
+    times[i] = Math.round(times[i]);
+
+    if (maxTime < times[i]) {
+      maxTime = times[i];
+    }
+  }
+  return maxTime;
+};
+
+var paintGamers = function (names) {
+  for (var i = 0; i < names.length; i++) {
+    var gamersColors = [i];
+    gamersColors[i] = names[i];
+    gamersColors[i] = 'rgba(0, 0, 255, ' + Math.random() + ')';
+  }
+  return gamersColors;
+};
+
+window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(AREA_SHADOW_X, AREA_SHADOW_Y, AREA_WIDTH, AREA_HEIGHT);
@@ -23,20 +45,11 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 150, 20);
   ctx.fillText('Список результатов:', 150, 35);
 
-  var maxTime = 0;
-
   for (var i = 0; i < times.length; i++) {
-    times[i] = Math.round(times[i]);
 
-    // console.log('время ' + times + ', ');
+    var colorColumn = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : paintGamers(names);
 
-    if (maxTime < times[i]) {
-      maxTime = times[i];
-    }
-
-    var colorColumn = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + Math.random() + ')';
-
-    var columnHeight = 150 / maxTime;
+    var columnHeight = 150 / getMaxTimes(times);
 
     ctx.fillStyle = colorColumn;
     ctx.fillRect(150 + i * (COLUMN_WIDTH + GAP), 90 + (150 - columnHeight * times[i]), COLUMN_WIDTH, columnHeight * times[i]);
