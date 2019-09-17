@@ -23,10 +23,6 @@ var COLOR_WHITE = 'rgb(255, 255, 255)';
 var MAIN_COLOR = 'rgba(255, 0, 0, 1)';
 var COLOR_SHADOW = 'rgba(0, 0, 0, 0.7)';
 
-var paintRandom = function () {
-  return 'rgba(0, 0, 255, ' + Math.random() + ')';
-};
-
 window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = Math.max.apply(null, times);
@@ -44,13 +40,10 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', LOCATION_X, LOCATION_Y_RESULT);
 
   for (var i = 0; i < times.length; i++) {
-
-    var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : paintRandom(names);
-
+    var columnOpacity = 'rgba(0, 0, 255, ' + (1 / (i + 1)) + ')';
+    var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : columnOpacity;
     var divisionValue = MAX_COLUMN_HEIGHT / maxTime;
-    times[i] = Math.round(times[i]);
     var columnHeight = divisionValue * times[i];
-
     var locationXGamersI = i * WIDTH_COLUMN_SHIFT + LOCATION_X;
 
     ctx.fillStyle = colorColumn;
@@ -60,6 +53,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
     ctx.textBaseline = 'hanging';
+    times[i] = Math.round(times[i]);
     ctx.fillText(names[i], columnName, LOCATION_Y_GAMERS_ROW);
 
     var gameTime = OFFSET_Y_GAMERS_TIMES + (LOCATION_X - columnHeight);
