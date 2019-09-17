@@ -40,25 +40,32 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', LOCATION_X, LOCATION_Y_RESULT);
 
   for (var i = 0; i < times.length; i++) {
-    var columnOpacity = 'rgba(0, 0, 255, ' + (1 / (i + 1)) + ')';
-    var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : columnOpacity;
+
+    var columnOpacity = function () {
+      return 'rgba(0, 0, 255, ' + (0.5 + i / 10) + ')';
+    };
+
+    var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : columnOpacity(times);
     var divisionValue = MAX_COLUMN_HEIGHT / maxTime;
     var columnHeight = divisionValue * times[i];
-    var locationXGamersI = i * WIDTH_COLUMN_SHIFT + LOCATION_X;
+    var columnPosX = i * WIDTH_COLUMN_SHIFT + LOCATION_X;
+    var indentFromTopColumn = WIDTH_COLUMN_SHIFT + (MAX_COLUMN_HEIGHT - columnHeight);
 
     ctx.fillStyle = colorColumn;
-    ctx.fillRect(locationXGamersI, WIDTH_COLUMN_SHIFT + (MAX_COLUMN_HEIGHT - columnHeight), COLUMN_WIDTH, columnHeight);
+    ctx.fillRect(columnPosX, indentFromTopColumn, COLUMN_WIDTH, columnHeight);
 
-    var columnName = locationXGamersI;
+    var columnName = columnPosX;
+
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
     ctx.textBaseline = 'hanging';
-    times[i] = Math.round(times[i]);
     ctx.fillText(names[i], columnName, LOCATION_Y_GAMERS_ROW);
 
     var gameTime = OFFSET_Y_GAMERS_TIMES + (LOCATION_X - columnHeight);
+
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
+    times[i] = Math.round(times[i]);
     ctx.fillText(times[i], columnName, gameTime);
   }
 };
