@@ -23,25 +23,31 @@ var COLOR_WHITE = 'rgb(255, 255, 255)';
 var MAIN_COLOR = 'rgba(255, 0, 0, 1)';
 var COLOR_SHADOW = 'rgba(0, 0, 0, 0.7)';
 
+var columnOpacity = function (i) {
+  return 'rgba(0, 0, 255, ' + (0.5 + i / 10) + ')';
+};
+
 window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = Math.max.apply(null, times);
 
-  ctx.fillStyle = COLOR_SHADOW;
-  ctx.fillRect(AREA_SHADOW_X, AREA_SHADOW_Y, AREA_WIDTH, AREA_HEIGHT);
+  var getClouds = function () {
+    ctx.fillStyle = COLOR_SHADOW;
+    ctx.fillRect(AREA_SHADOW_X, AREA_SHADOW_Y, AREA_WIDTH, AREA_HEIGHT);
 
-  ctx.fillStyle = COLOR_WHITE;
-  ctx.fillRect(AREA_X, AREA_Y, AREA_WIDTH, AREA_HEIGHT);
+    ctx.fillStyle = COLOR_WHITE;
+    ctx.fillRect(AREA_X, AREA_Y, AREA_WIDTH, AREA_HEIGHT);
 
-  ctx.fillStyle = COLOR_BLACK;
-  ctx.font = TEXT_FONTS;
-  ctx.textBaseline = 'hanging';
-  ctx.fillText('Ура вы победили!', LOCATION_X, LOCATION_Y_WINNER);
-  ctx.fillText('Список результатов:', LOCATION_X, LOCATION_Y_RESULT);
+    ctx.fillStyle = COLOR_BLACK;
+    ctx.font = TEXT_FONTS;
+    ctx.textBaseline = 'hanging';
+    ctx.fillText('Ура вы победили!', LOCATION_X, LOCATION_Y_WINNER);
+    ctx.fillText('Список результатов:', LOCATION_X, LOCATION_Y_RESULT);
 
-  var columnOpacity = function (i) {
-    return 'rgba(0, 0, 255, ' + (0.5 + i / 10) + ')';
+    return;
   };
+
+  getClouds();
 
   for (var i = 0; i < times.length; i++) {
 
@@ -65,7 +71,6 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
-    times[i] = Math.round(times[i]);
-    ctx.fillText(times[i], columnName, gameTime);
+    ctx.fillText(Math.round(times[i]), columnName, gameTime);
   }
 };
