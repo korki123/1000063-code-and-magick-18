@@ -15,6 +15,7 @@ var LOCATION_Y_WINNER = 20;
 var LOCATION_Y_RESULT = 35;
 var LOCATION_Y_GAMERS_ROW = 255;
 var GAP = 50;
+var WIDTH_COLUMN_SHIFT = COLUMN_WIDTH + GAP;
 var OFFSET_Y_GAMERS_TIMES = 70;
 var TEXT_FONTS = '14px PT Mono';
 var COLOR_BLACK = 'rgb(0, 0, 0)';
@@ -47,20 +48,21 @@ window.renderStatistics = function (ctx, names, times) {
     var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : paintRandom(names);
 
     var divisionValue = MAX_COLUMN_HEIGHT / maxTime;
-    var columnHeight = [];
     times[i] = Math.round(times[i]);
-    columnHeight[i] = divisionValue * times[i];
+    var columnHeight = divisionValue * times[i];
+
+    var locationXGamersI = i * WIDTH_COLUMN_SHIFT + LOCATION_X;
 
     ctx.fillStyle = colorColumn;
-    ctx.fillRect(LOCATION_X + i * (COLUMN_WIDTH + GAP), COLUMN_WIDTH + GAP + (MAX_COLUMN_HEIGHT - columnHeight[i]), COLUMN_WIDTH, columnHeight[i]);
+    ctx.fillRect(locationXGamersI, WIDTH_COLUMN_SHIFT + (MAX_COLUMN_HEIGHT - columnHeight), COLUMN_WIDTH, columnHeight);
 
-    var columnName = LOCATION_X + i * (COLUMN_WIDTH + GAP);
+    var columnName = locationXGamersI;
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
     ctx.textBaseline = 'hanging';
     ctx.fillText(names[i], columnName, LOCATION_Y_GAMERS_ROW);
 
-    var gameTime = OFFSET_Y_GAMERS_TIMES + (LOCATION_X - columnHeight[i]);
+    var gameTime = OFFSET_Y_GAMERS_TIMES + (LOCATION_X - columnHeight);
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
     ctx.fillText(times[i], columnName, gameTime);
