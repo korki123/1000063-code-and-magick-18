@@ -43,6 +43,7 @@ window.renderStatistics = function (ctx, names, times) {
     return 'rgba(0, 0, 255, ' + (0.5 + i / 10) + ')';
   };
 
+
   for (var i = 0; i < times.length; i++) {
 
     var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : columnOpacity(i);
