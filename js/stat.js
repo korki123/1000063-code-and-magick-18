@@ -4,8 +4,10 @@ var AREA_WIDTH = 420;
 var AREA_HEIGHT = 270;
 var AREA_X = 100;
 var AREA_Y = 10;
-var AREA_SHADOW_X = 110;
-var AREA_SHADOW_Y = 20;
+var OFFSET_EDGE_X = 10
+var OFFSET_EDGE_Y = 10
+var AREA_SHADOW_X = AREA_X + OFFSET_EDGE_X;
+var AREA_SHADOW_Y = AREA_Y + OFFSET_EDGE_Y;
 var COLUMN_WIDTH = 40;
 var MAX_COLUMN_HEIGHT = 150;
 var LOCATION_X = 150;
@@ -20,24 +22,13 @@ var COLOR_WHITE = 'rgb(255, 255, 255)';
 var MAIN_COLOR = 'rgba(255, 0, 0, 1)';
 var COLOR_SHADOW = 'rgba(0, 0, 0, 0.7)';
 
-var getMaxTimes = function (times) {
-  var maxTime = 0;
-
-  for (var i = 0; i < times.length; i++) {
-    times[i] = Math.round(times[i]);
-
-    if (maxTime < times[i]) {
-      maxTime = times[i];
-    }
-  }
-  return maxTime;
-};
-
-var paintRandom = function (names) {
+var paintRandom = function () {
   return 'rgba(0, 0, 255, ' + Math.random() + ')';
 };
 
 window.renderStatistics = function (ctx, names, times) {
+
+  var maxTime = Math.max.apply(null, times);
 
   ctx.fillStyle = COLOR_SHADOW;
   ctx.fillRect(AREA_SHADOW_X, AREA_SHADOW_Y, AREA_WIDTH, AREA_HEIGHT);
@@ -55,7 +46,8 @@ window.renderStatistics = function (ctx, names, times) {
 
     var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : paintRandom(names);
 
-    var columnHeight = MAX_COLUMN_HEIGHT / getMaxTimes(times);
+    var columnHeight = MAX_COLUMN_HEIGHT / maxTime;
+    times[i] = Math.round(times[i]);
 
     ctx.fillStyle = colorColumn;
     ctx.fillRect(LOCATION_X + i * (COLUMN_WIDTH + GAP), COLUMN_WIDTH + GAP + (MAX_COLUMN_HEIGHT - columnHeight * times[i]), COLUMN_WIDTH, columnHeight * times[i]);
