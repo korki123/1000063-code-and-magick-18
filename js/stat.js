@@ -4,8 +4,8 @@ var AREA_WIDTH = 420;
 var AREA_HEIGHT = 270;
 var AREA_X = 100;
 var AREA_Y = 10;
-var OFFSET_EDGE_X = 10
-var OFFSET_EDGE_Y = 10
+var OFFSET_EDGE_X = 10;
+var OFFSET_EDGE_Y = 10;
 var AREA_SHADOW_X = AREA_X + OFFSET_EDGE_X;
 var AREA_SHADOW_Y = AREA_Y + OFFSET_EDGE_Y;
 var COLUMN_WIDTH = 40;
@@ -46,21 +46,23 @@ window.renderStatistics = function (ctx, names, times) {
 
     var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : paintRandom(names);
 
-    var columnHeight = MAX_COLUMN_HEIGHT / maxTime;
+    var divisionValue = MAX_COLUMN_HEIGHT / maxTime;
+    var columnHeight = [];
     times[i] = Math.round(times[i]);
+    columnHeight[i] = divisionValue * times[i];
 
     ctx.fillStyle = colorColumn;
-    ctx.fillRect(LOCATION_X + i * (COLUMN_WIDTH + GAP), COLUMN_WIDTH + GAP + (MAX_COLUMN_HEIGHT - columnHeight * times[i]), COLUMN_WIDTH, columnHeight * times[i]);
+    ctx.fillRect(LOCATION_X + i * (COLUMN_WIDTH + GAP), COLUMN_WIDTH + GAP + (MAX_COLUMN_HEIGHT - columnHeight[i]), COLUMN_WIDTH, columnHeight[i]);
 
-    var columnNames = LOCATION_X + i * (COLUMN_WIDTH + GAP);
+    var columnName = LOCATION_X + i * (COLUMN_WIDTH + GAP);
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
     ctx.textBaseline = 'hanging';
-    ctx.fillText(names[i], columnNames, LOCATION_Y_GAMERS_ROW);
+    ctx.fillText(names[i], columnName, LOCATION_Y_GAMERS_ROW);
 
-    var gameTimes = OFFSET_Y_GAMERS_TIMES + (LOCATION_X - columnHeight * times[i]);
+    var gameTime = OFFSET_Y_GAMERS_TIMES + (LOCATION_X - columnHeight[i]);
     ctx.fillStyle = COLOR_BLACK;
     ctx.font = TEXT_FONTS;
-    ctx.fillText(times[i], columnNames, gameTimes);
+    ctx.fillText(times[i], columnName, gameTime);
   }
 };
