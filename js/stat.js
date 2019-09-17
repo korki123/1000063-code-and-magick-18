@@ -39,13 +39,13 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', LOCATION_X, LOCATION_Y_WINNER);
   ctx.fillText('Список результатов:', LOCATION_X, LOCATION_Y_RESULT);
 
+  var columnOpacity = function (i) {
+    return 'rgba(0, 0, 255, ' + (0.5 + i / 10) + ')';
+  };
+
   for (var i = 0; i < times.length; i++) {
 
-    var columnOpacity = function () {
-      return 'rgba(0, 0, 255, ' + (0.5 + i / 10) + ')';
-    };
-
-    var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : columnOpacity(times);
+    var colorColumn = names[i] === 'Вы' ? MAIN_COLOR : columnOpacity(i);
     var divisionValue = MAX_COLUMN_HEIGHT / maxTime;
     var columnHeight = divisionValue * times[i];
     var columnPosX = i * WIDTH_COLUMN_SHIFT + LOCATION_X;
