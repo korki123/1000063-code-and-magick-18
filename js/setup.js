@@ -7,10 +7,14 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WISARD_COAT_COLORS = ['rgb (101, 137, 164)', 'rgb (241, 43, 107)', 'rgb (146, 100, 161)', 'rgb (56, 159, 117)', 'rgb (215, 210, 55)', 'rgb (0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var numberOfPlayers = 4;
 
 var selectedWizardNames = function () {
+  var i = numberOfPlayers;
+  i <
 
-  for (WIZARD_NAMES.length; WIZARD_NAMES.length > 4; WIZARD_NAMES.length += 0) {
+
+  for (WIZARD_NAMES.length; WIZARD_NAMES.length > numberOfPlayers; WIZARD_NAMES.length += 0) {
 
     var rand = Math.floor(Math.random() * WIZARD_NAMES.length);
     WIZARD_NAMES.splice(rand, 1);
@@ -56,10 +60,12 @@ var selectedWizardEyesColor = function () {
 };
 console.log(selectedWizardEyesColor());
 
-var wizard = {
-  wizardCoat: selectedWisardCoatColors,
-  wizardEyes: selectedWizardEyesColor,
-  wizardName: selectedWizardNames,
-  wizardSurname: selectedWizardNamesSurnames,
-};
+var wizard = [];
+
+for (var i = 0; i < WIZARD_NAMES.length; i++) {
+  wizard
+
+}
+
+
 console.log(wizard);
