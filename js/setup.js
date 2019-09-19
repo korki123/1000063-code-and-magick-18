@@ -33,11 +33,11 @@ var selectedWizardNames = function () {
     WIZARD_EYES_COLOR.splice(randEyesColor, 1);
   }
 
-  console.log('имена ' + WIZARD_NAMES + '; фамилии ' + WIZARD_SURNAMES + '; плащи ' + WISARD_COAT_COLORS + '; глаза' + WIZARD_EYES_COLOR);
+  // console.log('имена ' + WIZARD_NAMES + '; фамилии ' + WIZARD_SURNAMES + '; плащи ' + WISARD_COAT_COLORS + '; глаза' + WIZARD_EYES_COLOR);
 
   var wizardReady = [];
 
-  for (var i = 0; i <  numberOfPlayers; i++) {
+  for (var i = 0; i < numberOfPlayers; i++) {
     wizardReady[i] = {
       name: WIZARD_NAMES[i],
       surname: WIZARD_SURNAMES[i],
@@ -49,4 +49,4 @@ var selectedWizardNames = function () {
   return wizardReady;
 };
 
-console.log(selectedWizardNames());
+// console.log(selectedWizardNames());
