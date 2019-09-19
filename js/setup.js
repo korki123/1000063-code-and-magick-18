@@ -12,41 +12,40 @@ var numberOfPlayers = 4;
 
 var selectedWizardNames = function () {
 
-  for (WIZARD_NAMES.length; WIZARD_NAMES.length > numberOfPlayers; WIZARD_NAMES.length += 0) {
+  for (var i = 0; i < numberOfPlayers; i++) {
 
     var randNames = Math.floor(Math.random() * WIZARD_NAMES.length);
-    WIZARD_NAMES.splice(randNames, 1);
-  }
+    console.log(WIZARD_NAMES[randNames]);
 
-  for (WIZARD_SURNAMES.length; WIZARD_SURNAMES.length > numberOfPlayers; WIZARD_SURNAMES.length += 0) {
     var randSurnames = Math.floor(Math.random() * WIZARD_SURNAMES.length);
-    WIZARD_SURNAMES.splice(randSurnames, 1);
-  }
+    console.log(WIZARD_SURNAMES[randSurnames]);
 
-  for (WISARD_COAT_COLORS.length; WISARD_COAT_COLORS.length > numberOfPlayers; WISARD_COAT_COLORS.length += 0) {
     var randCoatColors = Math.floor(Math.random() * WISARD_COAT_COLORS.length);
-    WISARD_COAT_COLORS.splice(randCoatColors, 1);
-  }
+    console.log(WISARD_COAT_COLORS[randCoatColors]);
 
-  for (WIZARD_EYES_COLOR.length; WIZARD_EYES_COLOR.length > numberOfPlayers; WIZARD_EYES_COLOR.length += 0) {
     var randEyesColor = Math.floor(Math.random() * WIZARD_EYES_COLOR.length);
+    console.log(WIZARD_EYES_COLOR[randEyesColor]);
+
+    var wizardReady = [];
+
+    for (var j = 0; j < numberOfPlayers; j++) {
+      wizardReady.push({
+        name: WIZARD_NAMES[j],
+        surname: WIZARD_SURNAMES[j],
+        coat: WISARD_COAT_COLORS[j],
+        eye: WIZARD_EYES_COLOR[j],
+      });
+    }
+
+    WIZARD_NAMES.splice(randNames, 1);
+    WIZARD_SURNAMES.splice(randSurnames, 1);
+    WISARD_COAT_COLORS.splice(randCoatColors, 1);
     WIZARD_EYES_COLOR.splice(randEyesColor, 1);
   }
 
-  // console.log('имена ' + WIZARD_NAMES + '; фамилии ' + WIZARD_SURNAMES + '; плащи ' + WISARD_COAT_COLORS + '; глаза' + WIZARD_EYES_COLOR);
-
-  var wizardReady = [];
-
-  for (var i = 0; i < numberOfPlayers; i++) {
-    wizardReady[i] = {
-      name: WIZARD_NAMES[i],
-      surname: WIZARD_SURNAMES[i],
-      coat: WISARD_COAT_COLORS[i],
-      eye: WIZARD_EYES_COLOR[i],
-    };
-  }
-
   return wizardReady;
+  console.log(wizardReady);
+
 };
 
-// console.log(selectedWizardNames());
+console.log(selectedWizardNames());
