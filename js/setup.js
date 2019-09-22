@@ -1,18 +1,20 @@
 'use strict';
 
-var SHOW_SETUP = document.querySelector('.setup');
-SHOW_SETUP.classList.remove('hidden');
 
 var WIZARD_NAMES = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-
 var NUMBER_OF_PLAYERS = 4;
 
+var SHOW_SETUP = document.querySelector('.setup');
+var SETUP_SIMILAR = document.querySelector('.setup-similar');
+var SETUP_SIMILAR_LIST = document.querySelector('.setup-similar-list');
+var SETUP_SIMILAR_ITEM = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+
 var getRandomNames = function (random) {
-  var randomNames = Math.floor(Math.random() * random.length);
-  return random.splice(randomNames, 1);
+  var randomNumber = Math.floor(Math.random() * random.length);
+  return random.splice(randomNumber, 1);
 };
 
 var prepareWizardsList = function () {
@@ -30,22 +32,23 @@ var prepareWizardsList = function () {
   // console.log(wizards);
 };
 
-// console.log(prepareWizardsList);
+// console.log(prepareWizardsList());
 
-var SETUP_SIMILAR = document.querySelector('.setup-similar');
-
-SETUP_SIMILAR.classList.remove('hidden');
-
-var SETUP_SIMILAR_LIST = document.querySelector('.setup-similar-list');
-var SETUP_SIMILAR_ITEM = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var fragment = document.createDocumentFragment();
 
 for (var j = 0; j < NUMBER_OF_PLAYERS; j++) {
   var vizardItem = SETUP_SIMILAR_ITEM.cloneNode(true);
+  var wizardsCollect = prepareWizardsList()[j];
 
-  vizardItem.querySelector('.wizard-coat').style.fill = prepareWizardsList()[j].coat;
-  vizardItem.querySelector('.wizard-head').style.fill = prepareWizardsList()[j].coat;
-  vizardItem.querySelector('.wizard-eyes').style.fill = prepareWizardsList()[j].eye;
-  vizardItem.querySelector('.setup-similar-label').textContent = prepareWizardsList()[j].name + prepareWizardsList()[j].surname;
+  vizardItem.querySelector('.wizard-coat').style.fill = wizardsCollect.coat;
+  vizardItem.querySelector('.wizard-head').style.fill = wizardsCollect.coat;
+  vizardItem.querySelector('.wizard-eyes').style.fill = wizardsCollect.eye;
+  vizardItem.querySelector('.setup-similar-label').textContent = wizardsCollect.name + wizardsCollect.surname;
 
-  SETUP_SIMILAR_LIST.appendChild(vizardItem);
+  fragment.appendChild(vizardItem);
 }
+
+SETUP_SIMILAR_LIST.appendChild(fragment);
+
+SHOW_SETUP.classList.remove('hidden');
+SETUP_SIMILAR.classList.remove('hidden');
