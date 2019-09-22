@@ -1,6 +1,5 @@
 'use strict';
 
-
 var WIZARD_NAMES = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -29,26 +28,30 @@ var prepareWizardsList = function () {
     });
   }
   return wizards;
-  // console.log(wizards);
 };
 
-// console.log(prepareWizardsList());
+var renderWizards = function () {
 
-var fragment = document.createDocumentFragment();
+  var fragment = document.createDocumentFragment();
+  var wizardsCollect = prepareWizardsList();
 
-for (var j = 0; j < NUMBER_OF_PLAYERS; j++) {
-  var vizardItem = SETUP_SIMILAR_ITEM.cloneNode(true);
-  var wizardsCollect = prepareWizardsList()[j];
+  for (var j = 0; j < NUMBER_OF_PLAYERS; j++) {
+    var vizardItem = SETUP_SIMILAR_ITEM.cloneNode(true);
 
-  vizardItem.querySelector('.wizard-coat').style.fill = wizardsCollect.coat;
-  vizardItem.querySelector('.wizard-head').style.fill = wizardsCollect.coat;
-  vizardItem.querySelector('.wizard-eyes').style.fill = wizardsCollect.eye;
-  vizardItem.querySelector('.setup-similar-label').textContent = wizardsCollect.name + wizardsCollect.surname;
+    vizardItem.querySelector('.wizard-coat').style.fill = wizardsCollect[j].coat;
+    vizardItem.querySelector('.wizard-head').style.fill = wizardsCollect[j].coat;
+    vizardItem.querySelector('.wizard-eyes').style.fill = wizardsCollect[j].eye;
+    vizardItem.querySelector('.setup-similar-label').textContent = wizardsCollect[j].name + wizardsCollect[j].surname;
 
-  fragment.appendChild(vizardItem);
-}
+    fragment.appendChild(vizardItem);
+  }
 
-SETUP_SIMILAR_LIST.appendChild(fragment);
+  SETUP_SIMILAR_LIST.appendChild(fragment);
 
-SHOW_SETUP.classList.remove('hidden');
-SETUP_SIMILAR.classList.remove('hidden');
+  SHOW_SETUP.classList.remove('hidden');
+  SETUP_SIMILAR.classList.remove('hidden');
+
+  return SETUP_SIMILAR;
+};
+
+renderWizards();
