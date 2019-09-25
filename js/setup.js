@@ -6,7 +6,7 @@ var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 1
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 var NUMBER_OF_PLAYERS = 4;
 
-var SHOW_SETUP = document.querySelector('.setup');
+// var SHOW_SETUP = document.querySelector('.setup');
 var SETUP_SIMILAR = document.querySelector('.setup-similar');
 var SETUP_SIMILAR_LIST = document.querySelector('.setup-similar-list');
 var SETUP_SIMILAR_ITEM = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
@@ -48,10 +48,31 @@ var renderWizards = function () {
 
   SETUP_SIMILAR_LIST.appendChild(fragment);
 
-  SHOW_SETUP.classList.remove('hidden');
+  // SHOW_SETUP.classList.remove('hidden');
   SETUP_SIMILAR.classList.remove('hidden');
 
   return SETUP_SIMILAR;
 };
 
 renderWizards();
+
+var openSetup = function () {
+  setup.classList.remove('hidden');
+};
+
+var openSetupWindows = document.querySelector('.setup-open');
+var setup = document.querySelector('.setup');
+openSetupWindows.addEventListener('click', openSetup());
+
+
+var closedSetup = function () {
+  setup.classList.add('hidden');
+};
+
+var closeSetupWindow = setup.querySelector('.setup-close');
+closeSetupWindow.addEventListener('click', closedSetup());
+document.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 27) {
+    closedSetup();
+  }
+});
