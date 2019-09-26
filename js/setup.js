@@ -56,23 +56,27 @@ var renderWizards = function () {
 
 renderWizards();
 
-var openSetup = function () {
+var onOpenSetupClick = function () {
   setup.classList.remove('hidden');
 };
 
 var openSetupWindows = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
-openSetupWindows.addEventListener('click', openSetup());
+openSetupWindows.addEventListener('click', onOpenSetupClick);
+// openSetupWindows.addEventListener('keydown', function (etv) {
+//   if (etv.keyCode === 13) {
+//     onOpenSetupClick;
+//   }
+// });
 
-
-var closedSetup = function () {
+var onClosedSetupClick = function () {
   setup.classList.add('hidden');
 };
 
-var closeSetupWindow = setup.querySelector('.setup-close');
-closeSetupWindow.addEventListener('click', closedSetup());
+var closeSetupWindow = document.querySelector('.setup-close');
+closeSetupWindow.addEventListener('click', onClosedSetupClick);
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
-    closedSetup();
+    onClosedSetupClick;
   }
 });
