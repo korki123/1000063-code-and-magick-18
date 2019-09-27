@@ -62,21 +62,23 @@ var onOpenSetupClick = function () {
 
 var openSetupWindows = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
+
 openSetupWindows.addEventListener('click', onOpenSetupClick);
-// openSetupWindows.addEventListener('keydown', function (etv) {
-//   if (etv.keyCode === 13) {
-//     onOpenSetupClick;
-//   }
-// });
+openSetupWindows.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    onOpenSetupClick(evt);
+  }
+});
 
 var onClosedSetupClick = function () {
   setup.classList.add('hidden');
 };
 
 var closeSetupWindow = document.querySelector('.setup-close');
+
 closeSetupWindow.addEventListener('click', onClosedSetupClick);
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
-    onClosedSetupClick;
+    onClosedSetupClick(evt);
   }
 });
