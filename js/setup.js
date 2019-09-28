@@ -115,3 +115,17 @@ userNameInput.addEventListener('keydown', function (etv) {
 //   setup.classList.remove('hidden');
 //   document.addEventListener('keydown', onCloseEsc);
 // };
+
+// ============= отправка формы ================================
+
+// var sendButton = setup.querySelector('.setup-submit');
+// var vizardForm = setup.querySelector('.setup-wizard-form');
+//
+// var onSendSubmitButton = function() {
+//   if (sendButton === ENTER_KEYCODE) {
+//       vizardForm.addEventListener('submit', function(evt))
+//   }
+// }
+//
+// sendButton.addEventListener('submit', onSendSubmitButton);
+//
