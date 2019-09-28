@@ -56,29 +56,62 @@ var renderWizards = function () {
 
 renderWizards();
 
+// +++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++
+
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var onCloseEsc = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    onClosedSetupClick();
+  }
+};
+
 var onOpenSetupClick = function () {
   setup.classList.remove('hidden');
+  document.addEventListener('keydown', onCloseEsc);
 };
+
+var onOpenEnterKeycode = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    onOpenSetupClick();
+  }
+};
+// ============= открыть окно ================================
 
 var openSetupWindows = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 
 openSetupWindows.addEventListener('click', onOpenSetupClick);
-openSetupWindows.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
-    onOpenSetupClick(evt);
-  }
-});
+
+openSetupWindows.addEventListener('keydown', onOpenEnterKeycode);
+
+// ============= закрыть окно ================================
 
 var onClosedSetupClick = function () {
   setup.classList.add('hidden');
+  document.removeEventListener('keydown', onCloseEsc);
 };
 
 var closeSetupWindow = document.querySelector('.setup-close');
 
 closeSetupWindow.addEventListener('click', onClosedSetupClick);
-document.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 27) {
-    onClosedSetupClick(evt);
+
+
+// ============= input ================================
+
+
+var userNameInput = setup.querySelector('.setup-user-name');
+userNameInput.addEventListener('keydown', function (etv) {
+  if (etv.keyCode === ESC_KEYCODE) {
+    onOpenSetupClick();
   }
 });
+
+// userNameInput.removeEventListener('keydown', onCloseEsc);
+
+// var onUserInput = function () {
+//   setup.classList.remove('hidden');
+//   document.addEventListener('keydown', onCloseEsc);
+// };
