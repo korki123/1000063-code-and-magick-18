@@ -30,21 +30,19 @@ var prepareWizardsList = function () {
   return wizards;
 };
 
-var renderWizards = function () {
+var renderWizards = function (wizards) {
 
   var fragment = document.createDocumentFragment();
-  var wizardsCollect = prepareWizardsList();
+  wizards = wizards.forEach(function (wizard) {
+    var wizardItem = SETUP_SIMILAR_ITEM.cloneNode(true);
 
-  for (var j = 0; j < NUMBER_OF_PLAYERS; j++) {
-    var vizardItem = SETUP_SIMILAR_ITEM.cloneNode(true);
+    wizardItem.querySelector('.wizard-coat').style.fill = wizard.coat;
+    wizardItem.querySelector('.wizard-head').style.fill = wizard.coat;
+    wizardItem.querySelector('.wizard-eyes').style.fill = wizard.eye;
+    wizardItem.querySelector('.setup-similar-label').textContent = wizards.name + wizards.surname;
 
-    vizardItem.querySelector('.wizard-coat').style.fill = wizardsCollect[j].coat;
-    vizardItem.querySelector('.wizard-head').style.fill = wizardsCollect[j].coat;
-    vizardItem.querySelector('.wizard-eyes').style.fill = wizardsCollect[j].eye;
-    vizardItem.querySelector('.setup-similar-label').textContent = wizardsCollect[j].name + wizardsCollect[j].surname;
-
-    fragment.appendChild(vizardItem);
-  }
+    fragment.appendChild(wizardItem);
+  });
 
   SETUP_SIMILAR_LIST.appendChild(fragment);
 
@@ -54,7 +52,7 @@ var renderWizards = function () {
   return SETUP_SIMILAR;
 };
 
-renderWizards();
+renderWizards(prepareWizardsList());
 
 // +++++++++++++++++++++++++++++++++
 // +++++++++++++++++++++++++++++++++
@@ -97,15 +95,16 @@ var onClosedSetupClick = function () {
 var closeSetupWindow = document.querySelector('.setup-close');
 
 closeSetupWindow.addEventListener('click', onClosedSetupClick);
-
+closeSetupWindow.addEventListener('keydown', onClosedSetupClick);
 
 // ============= input ================================
 
 
 var userNameInput = setup.querySelector('.setup-user-name');
+
 userNameInput.addEventListener('keydown', function (etv) {
   if (etv.keyCode === ESC_KEYCODE) {
-    onOpenSetupClick();
+    document.removeEventListener('keydown', onCloseEsc);
   }
 });
 
@@ -119,13 +118,21 @@ userNameInput.addEventListener('keydown', function (etv) {
 // ============= отправка формы ================================
 
 // var sendButton = setup.querySelector('.setup-submit');
-// var vizardForm = setup.querySelector('.setup-wizard-form');
+// var wizardForm = setup.querySelector('.setup-wizard-form');
 //
 // var onSendSubmitButton = function() {
 //   if (sendButton === ENTER_KEYCODE) {
-//       vizardForm.addEventListener('submit', function(evt))
+//       wizardForm.addEventListener('submit', function(evt))
 //   }
 // }
 //
 // sendButton.addEventListener('submit', onSendSubmitButton);
 //
+
+
+// ============= мантия ================================
+
+// var wizardCustomCoat = document.querySelector('.wizard-coat');
+// wizardCustomCoat.addEventListener('click', function(evt) {
+//   evt.style.fill = rgb(101, 137, 164)'.coat;
+// });
